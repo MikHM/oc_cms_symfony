@@ -12,7 +12,21 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <div class="container">
+            {% block nav %}
+                <div id="header">
+                    <h2 id="logo">Symfony Made CMS</h2>
+                    <hr>
+                    <div id="nav">
+                        <a href="{{ path("cms_homepage")}}">Home</a>
+                    </div>
+                    <hr>
+                </div>
+            {% endblock %}
+            {% block body %}
+            
+            {% endblock %}
+        </div>
         {% block javascripts %}
             <script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js') }}"></script>
             <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
