@@ -1,2 +1,7 @@
+cms:
+    resource: "@CMSBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 
 
