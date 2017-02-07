@@ -15,8 +15,11 @@ security:
                 users:
                     admin: { password: adminpass, roles: ROLE_ADMIN }
         user_db:
-            entity: { class: CustomCMSBundle:User, property: username }
+            entity: { class: FramaruCMSBundle:User, property: username }
     firewalls:
+        # following symfony tutos, testing
+        #default:
+            #http_basic: ~
         main:
             pattern: /.*
             form_login:
@@ -34,3 +37,5 @@ security:
         - { path: /cms/category, roles: ROLE_ADMIN }
         - { path: /cms/page, roles: ROLE_USER }
         - { path: /.*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        # following symfony tutos, testing
+        #- { path: ^/admin, roles: ROLE_ADMIN }

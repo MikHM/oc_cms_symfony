@@ -3,5 +3,14 @@ cms:
     type:     annotation
     prefix:   /
 
+# manually adding login route cuz annotation not working 
+#login:
+#    path: /login
+#    defaults: { _controller: FramaruCMSBundle:Security:login }
 
 
+#login_check:
+#    path: /login_check
+
+#logout:
+#    pattern: /logout
