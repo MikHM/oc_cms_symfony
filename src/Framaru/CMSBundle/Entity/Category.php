@@ -3,6 +3,7 @@
 namespace Framaru\CMSBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Category
@@ -27,6 +28,21 @@ class Category
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
+
+    /**
+    * @ORM\OneToMany(targetEntity="Page", mappedBy="category")
+    */
+    private $pages;
+
+    public function __construct()
+    {
+        $this->pages = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
 
 
     /**
@@ -62,5 +78,38 @@ class Category
     {
         return $this->name;
     }
-}
 
+    /**
+     * Add page
+     *
+     * @param \Framaru\CMSBundle\Entity\Page $page
+     *
+     * @return Category
+     */
+    public function addPage(\Framaru\CMSBundle\Entity\Page $page)
+    {
+        $this->pages[] = $page;
+
+        return $this;
+    }
+
+    /**
+     * Remove page
+     *
+     * @param \Framaru\CMSBundle\Entity\Page $page
+     */
+    public function removePage(\Framaru\CMSBundle\Entity\Page $page)
+    {
+        $this->pages->removeElement($page);
+    }
+
+    /**
+     * Get pages
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPages()
+    {
+        return $this->pages;
+    }
+}
