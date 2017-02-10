@@ -15,8 +15,22 @@ class CMSController extends Controller
         $em = $this->getDoctrine()->getManager();
         $pages = $em->getRepository("CMSBundle:Page")->findAll();
 
-        return $this->render('CMSBundle:Default:index.html.twig', array(
+        return $this->render('CMSBundle:CMS:index.html.twig', array(
             "pages" => $pages
+        ));
+    }
+    
+    /**
+     * @Route("/page/{id}", name="cms_page_display")
+     */
+    public function pageDisplayAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $page = $em->getRepository("CMSBundle:Page")->find($id);
+
+        return $this->render("CMSBundle:CMS:pageDisplay.html.twig", array(
+            "page" => $page
         ));
     }
 }
