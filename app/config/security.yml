@@ -3,26 +3,20 @@
 security:
     encoders:
         Symfony\Component\Security\Core\User\User: plaintext
-        #Custom\CMSBundle\Entity\User: bcrypt
+        Framaru\CMSBundle\Entity\User: bcrypt
     role_hierarchy:
         ROLE_ADMIN: [ROLE_USER]
     providers:
-        #chain_provider:
-            #chain:
-                #providers: [in_memory, user_db]
+        chain_provider:
+            chain:
+                providers: [in_memory, user_db]
         in_memory:
             memory:
                 users:
-                    #admin: { password: adminpass, roles: ROLE_ADMIN }
-                    admin:
-                        password: adminpass
-                        roles: ['ROLE_ADMIN']
-        #user_db:
-         #   entity: { class: FramaruCMSBundle:User, property: username }
+                    admin: { password: adminpass, roles: ROLE_ADMIN }
+        user_db:
+            entity: { class: FramaruCMSBundle:User, property: username }
     firewalls:
-        # following symfony tutos, testing
-        #default:
-            #http_basic: ~
         main:
             pattern: /.*
             provider: in_memory
@@ -41,5 +35,3 @@ security:
         - { path: /cms/category, roles: ROLE_ADMIN }
         - { path: /cms/page, roles: ROLE_USER }
         - { path: /.*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        # following symfony tutos, testing
-        #- { path: ^/admin, roles: ROLE_ADMIN }
