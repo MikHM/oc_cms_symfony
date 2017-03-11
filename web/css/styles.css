@@ -12,6 +12,8 @@ h2 {
 .page {
     border-top: 30px;
     border-bottom: 30px;
+    width: 60%;
+    margin: 0 auto;
 }
 
 a {

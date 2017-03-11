@@ -19,7 +19,8 @@ class CMSController extends Controller
             "pages" => $pages
         ));
     }
-    
+
+
     /**
      * @Route("/page/{id}", name="cms_page_display")
      */

@@ -3,7 +3,10 @@
 namespace Framaru\CMSBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+
+// allow to auth user from the DB
 use Symfony\Component\Security\Core\User\UserInterface;
+
 
 /**
  * User
@@ -72,6 +75,8 @@ class User implements UserInterface
     }
 
     /**
+     * Making sure the whenever we save a user into the DB, that the entered password is encrypted using Bcrypt
+     *
      * Set password
      *
      * @param string $password
@@ -95,16 +100,22 @@ class User implements UserInterface
         return $this->password;
     }
 
+    // one of the methods needed in order to be able to use the user interface
+    // return null, because we will be handling the hashing or the salting of the pwd ourselves using Bcryp
     public function getSalt()
     {
         return null;
     }
 
+    // one of the methods needed in order to be able to use the user interface
+    // returns an array of roles for the user, access control.
     public function getRoles()
     {
         return array("ROLE_USER");
     }
 
+    // one of the methods needed in order to be able to use the user interface
+    // Will be used behind the scenes by Symfony to erase sinsitive info about the user
     public function eraseCredentials()
     {
 
