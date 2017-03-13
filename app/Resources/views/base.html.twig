@@ -19,9 +19,16 @@
                     <h2 id="logo">Symfony Made CMS</h2>
                     <hr>
                     <div id="nav">
-                        <a href="{{ path("cms_homepage")}}">Home</a>
-                        <a href="{{ path("logout") }}" class="identification">Logout</a>
+                        <a href="{{ path("cms_homepage")}}"> Home </a>
+                        {#TODO "Login" link should be removed for the final version of the site#}
                         <a href="{{ path("login") }}" class="identification">Login</a>
+
+                        {% if is_granted("ROLE_ADMIN") %}
+                            | <a href="{{ path("cms_page_new") }}"> New Post </a> |
+                            <a href="{{ path("cms_category_index") }}"> Categories </a> |
+                            <a href="{{ path("logout") }}" class="identification"> Logout </a>
+                        {% endif %}
+
                     </div>
                     <hr>
                 </div>
