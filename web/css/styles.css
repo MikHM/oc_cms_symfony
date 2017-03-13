@@ -31,3 +31,8 @@ a:hover {
 #username, #password {
     color: #000;
 }
+
+.identification {
+    float: right;
+    margin-left: 0.5em;
+}
