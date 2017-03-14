@@ -1,24 +1,26 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Page edit</h1>
+    <div class="container">
+        <div class="row col-lg-offset-2 col-lg-8">
+            <h1>Modifier un billet</h1>
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+            {{ form_start(edit_form) }}
+            {{ form_widget(edit_form) }}
+            <button type="submit" value="Edit" class="btn btn-default">Modifier</button>
+            {{ form_end(edit_form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('cms_page_index') }}">Back to the list</a>
-        </li>
-        <li>
+
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+            <br>
+            <button type="submit" value="Delete" class="btn btn-default">Supprimer</button>
             {{ form_end(delete_form) }}
-        </li>
-    </ul>
 
-    {{ tinymce_init() }}
+            <br>
+            <a href="{{ path('cms_page_index') }}"><button>Retour à la liste des billets</button></a>
 
+            {{ tinymce_init() }}
+
+        </div>
+    </div>
 {% endblock %}

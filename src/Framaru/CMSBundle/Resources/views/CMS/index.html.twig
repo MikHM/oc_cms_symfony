@@ -2,7 +2,7 @@
 
 {% block body %}
  {% for page in pages %}
-     <div class="page container col-md-offset-3 col-md-6">
+     <div class="page container col-md-offset-2 col-md-8">
          <h2>{{ page.title }}</h2>
          <p>{{ page.content | slice(0,500) | striptags}}...<br><a href="{{ path("cms_page_display", { id: page.id }) }}"> read more</a></p>
      </div>

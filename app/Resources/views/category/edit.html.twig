@@ -1,17 +1,18 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Modifier la catégorie</h1>
+    <div class="container">
+        <div class="row col-lg-offset-2 col-lg-8">
+            <h1>Modifier la catégorie</h1>
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <br>
-        <button type="submit" value="Edit" class="btn btn-default">Modifier</button>
-    {{ form_end(edit_form) }}
+            {{ form_start(edit_form) }}
+            {{ form_widget(edit_form) }}
+            <br>
+            <button type="submit" value="Edit" class="btn btn-default">Modifier</button>
+            {{ form_end(edit_form) }}
 
-    {#{{ form_start(delete_form) }}
-        <button type="submit" value="Delete" class="btn btn-default">Supprimer</button>
-    {{ form_end(delete_form) }}#}
-    <br>
-    <a href="{{ path('cms_category_index') }}"><button>Revenir à la liste des catégories</button></a>
+            <br>
+            <a href="{{ path('cms_category_index') }}"><button>Revenir à la liste des catégories</button></a>
+        </div>
+    </div>
 {% endblock %}

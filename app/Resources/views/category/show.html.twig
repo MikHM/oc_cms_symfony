@@ -1,20 +1,24 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Supprimer la catégorie</h1>
+    <div class="container">
+        <div class="row col-md-offset-2 col-md-8">
+            <h1>Supprimer la catégorie</h1>
 
-    <p>
-        Catégorie numéro: {{ category.id }}
-    </p>
-    <p>
-        Nom de la catégorie à effacer: <strong>{{ category.name }}</strong>
-    </p>
+            <p>
+                Catégorie numéro: {{ category.id }}
+            </p>
+            <p>
+                Nom de la catégorie à effacer: <strong>{{ category.name }}</strong>
+            </p>
 
-    {{ form_start(delete_form) }}
-        <button type="submit" value="Delete" class="btn btn-default">Supprimer</button>
-    {{ form_end(delete_form) }}
+            {{ form_start(delete_form) }}
+            <button type="submit" value="Delete" class="btn btn-default">Supprimer</button>
+            {{ form_end(delete_form) }}
 
-    <br>
-    <a href="{{ path('cms_category_index') }}"><button>Revenir à la liste des catégories</button></a>
+            <br>
+            <a href="{{ path('cms_category_index') }}"><button>Revenir à la liste des catégories</button></a>
+        </div>
+    </div>
 
 {% endblock %}
