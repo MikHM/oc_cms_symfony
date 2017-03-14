@@ -1,7 +1,13 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <h1>{{ page.title }}</h1>
-    <h5>Category: {{ page.category.name }}</h5>
-    <p>{{ page.content }}</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-2 col-md-8">
+                <h1>{{ page.title }}</h1>
+                <h5>Category: {{ page.category.name }}</h5>
+                <p>{{ page.content }}</p>
+            </div>
+        </div>
+    </div>
 {% endblock %}

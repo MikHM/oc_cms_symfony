@@ -2,7 +2,8 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Symfony - CMS{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}Jean Forteroche{% endblock %}</title>
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
             <link rel="stylesheet" href="{{ asset('vendor/jquery-ui-1.12.0/jquery-ui.css') }}">
@@ -16,9 +17,12 @@
         <div class="container">
             {% block nav %}
                 <div id="header">
-                    <h2 id="logo">Symfony Made CMS</h2>
-                    <hr>
-                    <div id="nav">
+                    <div class="row col-md-offset-2 col-md-8">
+                        <h1 id="logo">Jean FORTEROCHE</h1>
+                        <hr>
+                    </div>
+
+                    <div class="row col-md-offset-2 col-md-8">
                         <a href="{{ path("cms_homepage")}}"> Home </a>
                         {#TODO "Login" link should be removed for the final version of the site#}
                         <a href="{{ path("login") }}" class="identification">Login</a>
@@ -28,9 +32,9 @@
                             <a href="{{ path("cms_category_index") }}"> Categories </a> |
                             <a href="{{ path("logout") }}" class="identification"> Logout </a>
                         {% endif %}
-
+                        <hr>
                     </div>
-                    <hr>
+
                 </div>
             {% endblock %}
             {% block body %}

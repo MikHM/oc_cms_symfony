@@ -1,39 +1,30 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Categories list</h1>
-
-    <table>
-        <thead>
+    <h1>Liste des différentes catégories</h1>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Actions</th>
+                <th>#</th>
+                <th>Catégorie</th>
+                <th>Editer</th>
+                <th>Supprimer</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for category in categories %}
+            </thead>
+            {% for category in categories %}
+            <tbody>
             <tr>
-                <td><a href="{{ path('cms_category_show', { 'id': category.id }) }}">{{ category.id }}</a></td>
+                <td>{{ category.id }}</td>
                 <td>{{ category.name }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('cms_category_show', { 'id': category.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('cms_category_edit', { 'id': category.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
+                <td><a href="{{ path('cms_category_edit', { 'id': category.id }) }}">Modifier</a></td>
+                <td><a href="{{ path('cms_category_show', { 'id': category.id }) }}">Supprimer</a></td>
             </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </tbody>
+            {% endfor %}
+        </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('cms_category_new') }}">Create a new category</a>
-        </li>
-    </ul>
+        <a href="{{ path('cms_category_new') }}"><button>Ajouter une nouvelle catégorie</button></a>
+
+    </div>
 {% endblock %}

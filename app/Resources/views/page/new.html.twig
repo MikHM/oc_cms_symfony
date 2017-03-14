@@ -1,19 +1,29 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Page creation</h1>
+    <div class="container">
+        <div class="row col-md-offset-2 col-md-8">
+            <h1>Créer un nouveau billet</h1>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+                <button type="submit" value="Create" class="btn btn-default">Créer le billet</button>
+            {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('cms_page_index') }}">Back to the list</a>
-        </li>
-    </ul>
+            <br>
 
-    {{ tinymce_init() }}
+            <a href="{{ path('cms_page_index') }}">
+                <button class="btn btn-default">Voir les billets</button>
+            </a>
+
+            {{ tinymce_init() }}
+
+        </div>
+    </div>
+
+
+
+
+
 
 {% endblock %}
