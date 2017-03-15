@@ -1,18 +1,22 @@
 {% extends "::base.html.twig" %}
 
 {% block body %}
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-        <div class="alert alert-danger">{{ error.message }}</div>
-    {% endif %}
+    <div class="container">
+        <div class="row col-md-offset-2 col-md-8 text-center">
+            {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                <div class="alert alert-danger">{{ error.message }}</div>
+            {% endif %}
 
-    <form action="{{ path('login') }}" method="post">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="_username" value="{{ last_username }}" />
-
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="_password" />
-
-        <button type="submit">login</button>
-    </form>
+            <form action="{{ path('login') }}" method="post">
+                <label for="username">Utilisateur:</label><br>
+                <input type="text" id="username" name="_username" value="{{ last_username }}" />
+                <br><br>
+                <label for="password">Mot de passe:</label><br>
+                <input type="password" id="password" name="_password" />
+                <br><br>
+                <button type="submit">Connexion</button>
+            </form>
+        </div>
+    </div>
 {% endblock %}

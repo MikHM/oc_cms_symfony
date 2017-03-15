@@ -9,9 +9,9 @@
             <link rel="stylesheet" href="{{ asset('vendor/jquery-ui-1.12.0/jquery-ui.css') }}">
             <link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
             <link href="https://fonts.googleapis.com/css?family=Titillium+Web:300,400" rel="stylesheet">
+            <link rel="stylesheet" href="{{ asset('vendor/fontawesome/css/font-awesome.min.css') }}">
             <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
         {% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
         <div class="container">
@@ -23,13 +23,14 @@
                     </div>
 
                     <div class="row col-md-offset-2 col-md-8 ">
-                        <a href="{{ path("cms_homepage")}}"> Home </a>
+                        <a href="{{ path("cms_homepage")}}"> <span class="fa fa-home" aria-hidden="true"></span> </a>
                         {#TODO "Login" link should be removed for the final version of the site#}
                         <a href="{{ path("login") }}" class="identification">Login</a>
 
                         {% if is_granted("ROLE_ADMIN") %}
-                            | <a href="{{ path("cms_page_new") }}"> New Post </a> |
-                            <a href="{{ path("cms_category_index") }}"> Categories </a> |
+                            | <a href="{{ path("cms_page_new") }}"> Créer un billet </a> |
+                            <a href="{{ path("cms_category_index") }}"> Catégories </a> |
+                            <a href="https://forteroche.disqus.com/admin/moderate/#/pending">Commentaires</a>
                             <a href="{{ path("logout") }}" class="identification"> Logout </a>
                         {% endif %}
                         <hr>
