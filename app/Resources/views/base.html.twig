@@ -24,13 +24,14 @@
 
                     <div class="row col-md-offset-2 col-md-8 ">
                         <a href="{{ path("cms_homepage")}}"> <span class="fa fa-home" aria-hidden="true"></span> </a>
+
                         {#TODO "Login" link should be removed for the final version of the site#}
                         <a href="{{ path("login") }}" class="identification">Login</a>
 
                         {% if is_granted("ROLE_ADMIN") %}
                             | <a href="{{ path("cms_page_new") }}"> Créer un billet </a> |
                             <a href="{{ path("cms_category_index") }}"> Catégories </a> |
-                            <a href="https://forteroche.disqus.com/admin/moderate/#/pending">Commentaires</a>
+                            <a href="https://forteroche.disqus.com/admin/moderate/#/pending" target="_blank">Commentaires</a>
                             <a href="{{ path("logout") }}" class="identification"> Logout </a>
                         {% endif %}
                         <hr>
@@ -45,7 +46,8 @@
             {% block footer %}
                 <footer class="col-md-offset-2 col-md-8 text-center">
                     <br>
-                    <p>© 2016 Made by <a href="#">Framaru</a></p>
+                    <p>© 2016 - Forteroche</p>
+                    <p>Made by <a href="#">Framaru</a></p>
 
                 </footer>
             {% endblock %}
