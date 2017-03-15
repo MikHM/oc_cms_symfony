@@ -34,6 +34,7 @@ class Category
     */
     private $pages;
 
+
     public function __construct()
     {
         $this->pages = new ArrayCollection();

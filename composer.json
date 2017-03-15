@@ -1,5 +1,5 @@
 {
-    "name": "mik/starwarsevents_symfony",
+    "name": "cms_symfony",
     "license": "proprietary",
     "type": "project",
     "autoload": {
