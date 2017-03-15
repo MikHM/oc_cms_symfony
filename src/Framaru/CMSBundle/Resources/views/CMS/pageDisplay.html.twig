@@ -6,8 +6,13 @@
             <div class="col-md-offset-2 col-md-8">
                 <h1>{{ page.title }}</h1>
                 <h5>Catégorie: {{ page.category.name }}</h5>
-                <p>{{ page.content }}</p>
+                <p>{{ page.content | raw }}</p>
+
+                {{ knp_disqus_render('amet', {'identifier': '/december-2010/the-best-day-of-my-life/', 'language': 'de_formal'}) }}
+
             </div>
+
         </div>
+
     </div>
 {% endblock %}

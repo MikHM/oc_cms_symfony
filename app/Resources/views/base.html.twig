@@ -40,6 +40,14 @@
             {% block body %}
             
             {% endblock %}
+
+            {% block footer %}
+                <footer class="col-md-offset-2 col-md-8 text-center">
+                    <br>
+                    <p>© 2016 Made by <a href="#">Framaru</a></p>
+
+                </footer>
+            {% endblock %}
         </div>
         {% block javascripts %}
             <script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js') }}"></script>
