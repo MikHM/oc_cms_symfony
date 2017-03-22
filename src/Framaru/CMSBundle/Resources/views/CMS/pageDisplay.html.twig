@@ -8,9 +8,17 @@
                 <h5>Catégorie: {{ page.category.name }}</h5>
                 <p>{{ page.content | raw }}</p>
 
-                {{ disqus_embed(page) }}
+                {# Comment system using Disqus #}
+                {#{{ disqus_embed(page) }}#}
                 {#{{ knp_disqus_render('forteroche', {'identifier': "{{ page.id }}", 'language': 'fr'}) }}#}
                 {#{{ knp_disqus_render('dolor-sid', {'identifier': "{{ page.title }}", 'limit': 10}) }}#}
+            </div>
+            <div class="row col-md-8 col-md-offset-2">
+                {% for message in allComments %}
+                    <p>{{ message.content }}</p>
+                {% endfor %}
+            </div>
+            <div class="row col-md-8 col-md-offset-2">
 
             </div>
 
