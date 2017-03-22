@@ -32,7 +32,7 @@
                             | <a href="{{ path("cms_page_new") }}"> Créer un billet </a> |
                             <a href="{{ path("cms_category_index") }}"> Catégories </a> |
                             {#<a href="https://forteroche.disqus.com/admin/moderate/#/pending" target="_blank">Commentaires</a>#}
-                            <a href="#">Commentaires</a>
+                            <a href="{{ path("cms_comment_index") }}">Commentaires</a>
                             <a href="{{ path("logout") }}" class="identification"> Logout </a>
                         {% endif %}
                         <hr>

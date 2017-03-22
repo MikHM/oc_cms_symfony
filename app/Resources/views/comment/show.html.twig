@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row col-md-8 col-md-offset-2">
+            <h1>Comment</h1>
+
+            <table>
+                <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ comment.id }}</td>
+                </tr>
+                <tr>
+                    <th>Author</th>
+                    <td>{{ comment.author }}</td>
+                </tr>
+                <tr>
+                    <th>Content</th>
+                    <td>{{ comment.content }}</td>
+                </tr>
+                <tr>
+                    <th>Createdat</th>
+                    <td>{% if comment.createdAt %}{{ comment.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                </tr>
+                </tbody>
+            </table>
+            <br>
+            {{ form_start(delete_form) }}
+                <button type="submit" value="Delete" class="btn btn-default">Supprimer</button>
+            {{ form_end(delete_form) }}
+            <br>
+            <a href="{{ path('cms_comment_index') }}"><button>Retour à la liste des commentaires</button></a>
+        </div>
+    </div>
+{% endblock %}
