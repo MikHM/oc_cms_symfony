@@ -20,7 +20,10 @@
                 {% endfor %}
             </div>
             <div class="row col-md-8 col-md-offset-2">
-
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                <input type="submit" value="Create" />
+                {{ form_end(form) }}
             </div>
 
         </div>

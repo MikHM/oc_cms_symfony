@@ -5,6 +5,7 @@ namespace Framaru\CMSBundle\Controller;
 use Framaru\CMSBundle\Entity\Comment;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 class CMSController extends Controller
 {
@@ -25,7 +26,7 @@ class CMSController extends Controller
     /**
      * @Route("/page/{id}", name="cms_page_display")
      */
-    public function pageDisplayAction($id)
+    public function pageDisplayAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -33,22 +34,28 @@ class CMSController extends Controller
 
         $comment = new Comment();
 
-        // hard coding a comment
+        $form = $this->createForm("Framaru\CMSBundle\Form\CommentType", $comment);
+        $form->handleRequest($request);
+
         /*$comment->setAuthor("Mik");
         $comment->setContent("Trolololo");
-        $comment->setCreatedAt(new \DateTime);
-        $comment->setPage($page);*/
+        $comment->setCreatedAt(new \DateTime);*/
+        $comment->setPage($page);
 
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($comment);
+            $em->flush($comment);
+
+            return $this->redirectToRoute('cms_page_display', array('id' => $id));
+        }
 
         /* Selecting the appropriate comments */
         $allComments = $em->getRepository("CMSBundle:Comment")->findBy(array("page" => $id),array('createdAt' => 'desc'), 5, 0);
 
-        /*$em->persist($comment);
-        $em->flush();*/
-
         return $this->render("CMSBundle:CMS:pageDisplay.html.twig", array(
-            "info" => "information",
             "allComments" => $allComments,
+            "form" => $form->createView(),
             "page" => $page
         ));
     }
