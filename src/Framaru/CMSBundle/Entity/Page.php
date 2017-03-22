@@ -43,6 +43,11 @@ class Page
      */
     private $category;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Framaru\CMSBundle\Entity\Comment", mappedBy="page")
+     */
+    private $comments;
+
 
     /**
      * Get id
@@ -124,5 +129,46 @@ class Page
     public function getCategory()
     {
         return $this->category;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add comment
+     *
+     * @param \Framaru\CMSBundle\Entity\Comment $comment
+     *
+     * @return Page
+     */
+    public function addComment(\Framaru\CMSBundle\Entity\Comment $comment)
+    {
+        $this->comments[] = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Remove comment
+     *
+     * @param \Framaru\CMSBundle\Entity\Comment $comment
+     */
+    public function removeComment(\Framaru\CMSBundle\Entity\Comment $comment)
+    {
+        $this->comments->removeElement($comment);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
     }
 }

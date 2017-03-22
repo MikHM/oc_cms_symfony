@@ -32,15 +32,19 @@ class CMSController extends Controller
         $page = $em->getRepository("CMSBundle:Page")->find($id);
 
         $comment = new Comment();
-        $comment->setAuthor("Mik");
+
+        // hard coding a comment
+        /*$comment->setAuthor("Mik");
         $comment->setContent("Trolololo");
         $comment->setCreatedAt(new \DateTime);
-        $comment->setPage($page);
+        $comment->setPage($page);*/
 
-        $allComments = $em->getRepository("CMSBundle:Comment")->findAll();
 
-        $em->persist($comment);
-        $em->flush();
+        /* Selecting the appropriate comments */
+        $allComments = $em->getRepository("CMSBundle:Comment")->findBy(array("page" => $id),array('createdAt' => 'desc'), 5, 0);
+
+        /*$em->persist($comment);
+        $em->flush();*/
 
         return $this->render("CMSBundle:CMS:pageDisplay.html.twig", array(
             "info" => "information",

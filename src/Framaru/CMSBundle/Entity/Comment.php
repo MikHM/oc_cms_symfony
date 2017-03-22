@@ -15,7 +15,7 @@ class Comment
     /**
      * @var Page
      *
-     * @ORM\ManyToOne(targetEntity="Framaru\CMSBundle\Entity\Page")
+     * @ORM\ManyToOne(targetEntity="Framaru\CMSBundle\Entity\Page", inversedBy="comments")
      * @ORM\JoinColumn(nullable=false)
      */
     private $page;
