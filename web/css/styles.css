@@ -59,3 +59,16 @@ button {
     padding: 0.2em;
     border-radius: 0.4em;
 }
+
+.glyphicon {
+    float: right;
+    padding-right: 1em;
+}
+
+.glyphicon-flag:hover {
+    color: #d2241d;
+}
+
+.glyphicon-comment:hover {
+    color: #2aabd2;
+}

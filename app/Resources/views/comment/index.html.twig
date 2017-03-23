@@ -2,6 +2,43 @@
 
 {% block body %}
     <div class="container">
+        <div class="row col-md-8 col-md-offset-2">
+            <h1>Liste des commentaires signalés</h1>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Author</th>
+                        <th>Content</th>
+                        <th>Createdat</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for comment in comments %}
+                        {% if comment.flag %}
+                            <tr>
+                                <td><a href="{{ path('cms_comment_show', { 'id': comment.id }) }}">{{ comment.id }}</a></td>
+                                <td>{{ comment.author }}</td>
+                                <td>{{ comment.content | slice(0, 20)}}</td>
+                                <td>{% if comment.createdAt %}{{ comment.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                                <td>
+                                    <ul>
+                                        <a href="{{ path('cms_comment_show', { 'id': comment.id }) }}">Détails</a>
+                                    </ul>
+                                </td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <br>
+            <hr>
+            <br>
+
+        </div>
         <div class="row col-md-offset-2 col-md-8">
             <h1>Liste des commentaires</h1>
             <div class="table-responsive">

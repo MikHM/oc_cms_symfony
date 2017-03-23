@@ -18,7 +18,7 @@
                 <ul class="list-group">
                     {% for message in allComments %}
                        <li class="list-group-item">
-                           <p class="comment-info"><strong>{{ message.author }}</strong>, le <em>{{ message.createdAt | date }}</em> a écrit:</p>
+                           <p class="comment-info"><strong>{{ message.author }}</strong>, le <em>{{ message.createdAt | date }}</em> a écrit: <span class="glyphicon glyphicon-comment"></span><span class="glyphicon glyphicon-flag"></span></p>
                            <p>{{ message.content }}</p>
                        </li>
                     {% endfor %}

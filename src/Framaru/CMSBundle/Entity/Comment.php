@@ -56,6 +56,13 @@ class Comment
      */
     private $createdAt;
 
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="flag", type="boolean", nullable=true)
+     */
+    private $flag;
+
 
     public function __construct()
     {
@@ -166,5 +173,29 @@ class Comment
     public function getPage()
     {
         return $this->page;
+    }
+
+    /**
+     * Set flag
+     *
+     * @param boolean $flag
+     *
+     * @return Comment
+     */
+    public function setFlag($flag)
+    {
+        $this->flag = $flag;
+
+        return $this;
+    }
+
+    /**
+     * Get flag
+     *
+     * @return boolean
+     */
+    public function getFlag()
+    {
+        return $this->flag;
     }
 }
