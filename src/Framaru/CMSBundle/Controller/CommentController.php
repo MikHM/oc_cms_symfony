@@ -3,9 +3,12 @@
 namespace Framaru\CMSBundle\Controller;
 
 use Framaru\CMSBundle\Entity\Comment;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+
 
 /**
  * Comment controller.
@@ -39,7 +42,13 @@ class CommentController extends Controller
      */
     public function newAction(Request $request)
     {
+        $page_id = $request->get("page_id");
+
+        $page = $this->getDoctrine()->getRepository("CMSBundle:Page")->find($page_id);
         $comment = new Comment();
+
+        $comment->setPage($page);
+
         $form = $this->createForm('Framaru\CMSBundle\Form\CommentType', $comment);
         $form->handleRequest($request);
 
@@ -48,7 +57,7 @@ class CommentController extends Controller
             $em->persist($comment);
             $em->flush($comment);
 
-            return $this->redirectToRoute('cms_comment_show', array('id' => $comment->getId()));
+            return $this->redirectToRoute('cms_page_display', array('id' => $page_id));
         }
 
         return $this->render('comment/new.html.twig', array(
@@ -132,5 +141,45 @@ class CommentController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    /**
+     * Creates a response to a comment.
+     *
+     * @Route("/respond", name="cms_comment_respond")
+     * @Method({"GET", "POST"})
+     *
+     * @ParamConverter("comment", class="CMSBundle:Comment")
+     */
+    public function respondAction(Request $request, Comment $comment)
+    {
+        $comment = new Comment();
+
+        $page_id = $request->get("page_id");
+        $message = $request->get("message");
+        $comment_id = $request->get("comment_id");
+
+        $page = $this->getDoctrine()->getRepository("CMSBundle:Page")->find($page_id);
+        $reponded = $this->getDoctrine()->getRepository("CMSBundle:Comment")->find($comment_id);
+
+        $comment->setPage($page);
+        $comment->setResponse($reponded);
+
+        $form = $this->createForm('Framaru\CMSBundle\Form\CommentType', $comment);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($comment);
+            $em->flush($comment);
+
+            return $this->redirectToRoute('cms_page_display', array('id' => $page_id));
+        }
+
+        return $this->render('comment/respond.html.twig', array(
+            'comment' => $comment,
+            "message" => $message,
+            'form' => $form->createView(),
+        ));
     }
 }

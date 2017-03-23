@@ -1,16 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Comment creation</h1>
+    <div class="container">
+        <div class="row col-md-8 col-md-offset-2">
+            <h1>Comment creation</h1>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('cms_comment_index') }}">Back to the list</a>
-        </li>
-    </ul>
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <br>
+            <button type="submit" value="Create" class="btn">Poster</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
 {% endblock %}

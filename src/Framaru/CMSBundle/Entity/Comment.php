@@ -63,6 +63,11 @@ class Comment
      */
     private $flag;
 
+    /**
+     * @ORM\OneToOne(targetEntity="Framaru\CMSBundle\Entity\Comment")
+     */
+    protected $response;
+
 
     public function __construct()
     {
@@ -197,5 +202,29 @@ class Comment
     public function getFlag()
     {
         return $this->flag;
+    }
+
+    /**
+     * Set response
+     *
+     * @param \Framaru\CMSBundle\Entity\Comment $response
+     *
+     * @return Comment
+     */
+    public function setResponse(\Framaru\CMSBundle\Entity\Comment $response = null)
+    {
+        $this->response = $response;
+
+        return $this;
+    }
+
+    /**
+     * Get response
+     *
+     * @return \Framaru\CMSBundle\Entity\Comment
+     */
+    public function getResponse()
+    {
+        return $this->response;
     }
 }
