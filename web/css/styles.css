@@ -44,3 +44,18 @@ button {
     float: right;
     margin-left: 0.5em;
 }
+
+
+/* #################################
+            Comments
+################################# */
+.list-group {
+    color: #000;
+}
+
+.comment-info {
+    background-color: #3C465C;
+    color: #fff;
+    padding: 0.2em;
+    border-radius: 0.4em;
+}

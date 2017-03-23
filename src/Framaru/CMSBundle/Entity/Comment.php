@@ -3,6 +3,7 @@
 namespace Framaru\CMSBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Comment
@@ -33,6 +34,9 @@ class Comment
      * @var string
      *
      * @ORM\Column(name="author", type="string", length=255)
+     *
+     * @Assert\NotBlank(message="Veuillez ajouter un pseudo.")
+     * @Assert\Length(min="2")
      */
     private $author;
 
@@ -40,6 +44,8 @@ class Comment
      * @var string
      *
      * @ORM\Column(name="content", type="text")
+     *
+     * @Assert\NotBlank(message="Le message ne peut être vide.")
      */
     private $content;
 

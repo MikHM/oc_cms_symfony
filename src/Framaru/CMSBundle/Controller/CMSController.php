@@ -37,9 +37,6 @@ class CMSController extends Controller
         $form = $this->createForm("Framaru\CMSBundle\Form\CommentType", $comment);
         $form->handleRequest($request);
 
-        /*$comment->setAuthor("Mik");
-        $comment->setContent("Trolololo");
-        $comment->setCreatedAt(new \DateTime);*/
         $comment->setPage($page);
 
         if ($form->isSubmitted() && $form->isValid()) {
