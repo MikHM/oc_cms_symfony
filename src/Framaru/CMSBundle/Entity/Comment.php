@@ -2,6 +2,7 @@
 
 namespace Framaru\CMSBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -59,19 +60,25 @@ class Comment
     /**
      * @var bool
      *
-     * @ORM\Column(name="flag", type="boolean", nullable=true)
+     * @ORM\Column(name="flag", type="boolean", nullable=false, options={"default": 0})
      */
-    private $flag;
+    private $flag = false;
 
     /**
-     * @ORM\OneToOne(targetEntity="Framaru\CMSBundle\Entity\Comment")
+     * @ORM\ManyToOne(targetEntity="Framaru\CMSBundle\Entity\Comment", inversedBy="childs")
      */
-    protected $response;
+    private $parent;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Framaru\CMSBundle\Entity\Comment", mappedBy="parent")
+     */
+    private $childs;
 
 
     public function __construct()
     {
         $this->createdAt = new \Datetime();
+        $this->childs = new ArrayCollection();
     }
 
     /**
@@ -204,27 +211,63 @@ class Comment
         return $this->flag;
     }
 
+
     /**
-     * Set response
+     * Set parent
      *
-     * @param \Framaru\CMSBundle\Entity\Comment $response
+     * @param \Framaru\CMSBundle\Entity\Comment $parent
      *
      * @return Comment
      */
-    public function setResponse(\Framaru\CMSBundle\Entity\Comment $response = null)
+    public function setParent(\Framaru\CMSBundle\Entity\Comment $parent = null)
     {
-        $this->response = $response;
+        $this->parent = $parent;
+        $this->page = $parent->getPage();
 
         return $this;
     }
 
     /**
-     * Get response
+     * Get parent
      *
      * @return \Framaru\CMSBundle\Entity\Comment
      */
-    public function getResponse()
+    public function getParent()
     {
-        return $this->response;
+        return $this->parent;
+    }
+
+    /**
+     * Add child
+     *
+     * @param \Framaru\CMSBundle\Entity\Comment $child
+     *
+     * @return Comment
+     */
+    public function addChild(\Framaru\CMSBundle\Entity\Comment $child)
+    {
+        $this->childs[] = $child;
+
+        return $this;
+    }
+
+    /**
+     * Remove child
+     *
+     * @param \Framaru\CMSBundle\Entity\Comment $child
+     */
+    public function removeChild(\Framaru\CMSBundle\Entity\Comment $child)
+    {
+        $this->childs->removeElement($child);
+    }
+
+    /**
+     * Get childs
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getChilds()
+    {
+        return $this->childs;
     }
 }

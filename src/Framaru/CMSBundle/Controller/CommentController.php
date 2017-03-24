@@ -3,6 +3,7 @@
 namespace Framaru\CMSBundle\Controller;
 
 use Framaru\CMSBundle\Entity\Comment;
+use Framaru\CMSBundle\Form\CommentType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -146,26 +147,18 @@ class CommentController extends Controller
     /**
      * Creates a response to a comment.
      *
-     * @Route("/respond", name="cms_comment_respond")
+     * @Route("/respond/{id}", name="cms_comment_respond")
      * @Method({"GET", "POST"})
      *
-     * @ParamConverter("comment", class="CMSBundle:Comment")
      */
-    public function respondAction(Request $request, Comment $comment)
+    public function respondAction(Request $request, Comment $parent)
     {
         $comment = new Comment();
 
-        $page_id = $request->get("page_id");
-        $message = $request->get("message");
-        $comment_id = $request->get("comment_id");
+        $comment->setParent($parent);
 
-        $page = $this->getDoctrine()->getRepository("CMSBundle:Page")->find($page_id);
-        $reponded = $this->getDoctrine()->getRepository("CMSBundle:Comment")->find($comment_id);
 
-        $comment->setPage($page);
-        $comment->setResponse($reponded);
-
-        $form = $this->createForm('Framaru\CMSBundle\Form\CommentType', $comment);
+        $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -173,12 +166,12 @@ class CommentController extends Controller
             $em->persist($comment);
             $em->flush($comment);
 
-            return $this->redirectToRoute('cms_page_display', array('id' => $page_id));
+            return $this->redirectToRoute('cms_page_display', array('id' => $comment->getPage()->getId()));
         }
 
         return $this->render('comment/respond.html.twig', array(
             'comment' => $comment,
-            "message" => $message,
+            "parent" => $parent,
             'form' => $form->createView(),
         ));
     }

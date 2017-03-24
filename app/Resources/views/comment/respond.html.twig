@@ -1,6 +1,9 @@
 <div class="container">
     <div class="row col-md-8 col-md-offset-2 modal-body dialog">
         <h1>Répondre au commentaire</h1>
+        <blockquote>
+            {{ parent.content }}
+        </blockquote>
 
         {{ form_start(form) }}
         {{ form_widget(form) }}
