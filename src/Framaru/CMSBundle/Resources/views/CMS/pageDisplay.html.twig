@@ -1,4 +1,6 @@
 {% extends "base.html.twig" %}
+{% import "@CMS/response.html.twig" as response %}
+
 
 {% block body %}
     <div class="container">
@@ -8,6 +10,7 @@
                 <h5>Catégorie: {{ page.category.name }}</h5>
                 <p>{{ page.content | raw }}</p>
                 <hr class="col-md-4 col-md-offset-4">
+
 
                 {# Comment system using Disqus #}
                 {#{{ disqus_embed(page) }}#}
@@ -19,26 +22,30 @@
             <div class="row col-md-8 col-md-offset-2">
                 <ul class="list-group">
                     {% for message in allComments %}
+
                        <li class="list-group-item">
                            <p class="comment-info"><strong>{{ message.author }}</strong>, le <em>{{ message.createdAt | date }}</em> a écrit:
-
-                               {#<a href="{{ path("cms_comment_new", {"page_id": page.id}) }}">
-                                   <span class="glyphicon glyphicon-comment"></span>
-                               </a>#}
 
                                <a href="{{ path("cms_comment_respond", {"id": message.id}) }}">
                                    <span class="glyphicon glyphicon-comment"></span>
                                </a>
-                               <span class="glyphicon glyphicon-flag"></span></p>
+
+                               <span class="glyphicon glyphicon-flag"></span>
+                           </p>
 
                            <p>{{ message.content }}</p>
 
-                           {#<p>{{ render(controller("CMSBundle:Comment:respond", {"page_id": page.id})) }}</p>#}
+                           {% if message.childs %}
+                                {{ response.print_responses_recursivly(message) }}
+                           {% endif %}
 
                        </li>
+
                     {% endfor %}
                 </ul>
+
                 <hr class="col-md-4 col-md-offset-4">
+
             </div>
 
             <div class="row col-md-8 col-md-offset-2">

@@ -72,3 +72,7 @@ button {
 .glyphicon-comment:hover {
     color: #2aabd2;
 }
+
+.response {
+    margin-left: 1em;
+}

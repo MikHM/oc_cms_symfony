@@ -1,0 +1,16 @@
+{% macro print_responses_recursivly(message) %}
+    {% if message.childs is not null %}
+        {#{{ _self.print_responses_recursivly(response.content) }}#}
+        {% for response in message.childs %}
+            <li class="list-group-item response">
+                <p class="comment-info"><strong>{{ response.author }}</strong>, le <em>{{ response.createdAt | date }}</em> a écrit:
+                    <a href="{{ path("cms_comment_respond", {"id": response.id}) }}">
+                        <span class="glyphicon glyphicon-comment"></span>
+                    </a>
+                    <span class="glyphicon glyphicon-flag"></span>
+                </p>
+                <p>{{ response.content }}</p>
+            </li>
+        {% endfor %}
+    {% endif %}
+{% endmacro %}
