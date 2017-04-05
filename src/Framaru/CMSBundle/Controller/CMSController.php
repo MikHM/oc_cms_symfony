@@ -28,7 +28,7 @@ class CMSController extends Controller
     /**
      * @Route("/page/{id}", name="cms_page_display")
      */
-    public function pageDisplayAction(Request $request, Page $page)
+    public function pageDisplayAction(Request $request, Page $page, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
