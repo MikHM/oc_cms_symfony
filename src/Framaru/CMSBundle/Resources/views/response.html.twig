@@ -1,6 +1,6 @@
 {% macro showComment(message) %}
     <li class="list-group-item">
-        <p class="comment-info"><strong>{{ message.author }}</strong>, le <em>{{ message.createdAt | date }}</em> a écrit:
+        <p class="comment-info"><strong>{{ message.author }}</strong>, le <em>{{ message.createdAt | date }}</em>, a écrit:
 
             <a href="{{ path("cms_comment_respond", {"id": message.id}) }}">
                 <span class="glyphicon glyphicon-comment"></span>
@@ -11,9 +11,9 @@
 
         <p>{{ message.content }}</p>
 
-        {% if message.childs | length > 0 %}
+        {% if message.children | length > 0 %}
             <ul>
-                {% for reply in message.childs %}
+                {% for reply in message.children %}
                     {{ _self.showComment(reply) }}
                 {% endfor %}
             </ul>

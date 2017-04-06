@@ -65,20 +65,20 @@ class Comment
     private $flag = false;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Framaru\CMSBundle\Entity\Comment", inversedBy="childs")
+     * @ORM\ManyToOne(targetEntity="Framaru\CMSBundle\Entity\Comment", inversedBy="children")
      */
     private $parent;
 
     /**
      * @ORM\OneToMany(targetEntity="Framaru\CMSBundle\Entity\Comment", mappedBy="parent")
      */
-    private $childs;
+    private $children;
 
 
     public function __construct()
     {
         $this->createdAt = new \Datetime();
-        $this->childs = new ArrayCollection();
+        $this->children = new ArrayCollection();
     }
 
     /**
@@ -246,8 +246,8 @@ class Comment
      */
     public function addChild(\Framaru\CMSBundle\Entity\Comment $child)
     {
-        $this->childs[] = $child;
-
+        $this->children[] = $child;
+        
         return $this;
     }
 
@@ -258,16 +258,16 @@ class Comment
      */
     public function removeChild(\Framaru\CMSBundle\Entity\Comment $child)
     {
-        $this->childs->removeElement($child);
+        $this->children->removeElement($child);
     }
 
     /**
-     * Get childs
+     * Get children
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getChilds()
+    public function getchildren()
     {
-        return $this->childs;
+        return $this->children;
     }
 }
