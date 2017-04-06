@@ -70,11 +70,3 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
-knp_disqus:
-    api_key: %knp_disqus.api_key%
-    forums:
-        lorem:
-            shortname: %knp_disqus.lorem.shortname%
-            cache: my_cache_for_lorem # cache template key, usage described below
-        ipsum:
-            shortname: %knp_disqus.ipsum.shortname%

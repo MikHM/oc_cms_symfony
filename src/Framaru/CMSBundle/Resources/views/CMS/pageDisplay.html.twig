@@ -9,11 +9,9 @@
                 <h1>{{ page.title }}</h1>
                 <h5>Catégorie: {{ page.category.name }}</h5>
                 <p>{{ page.content | raw }}</p>
+
                 <hr class="col-md-4 col-md-offset-4">
-                {# Comment system using Disqus #}
-                {#{{ disqus_embed(page) }}#}
-                {#{{ knp_disqus_render('forteroche', {'identifier': "{{ page.id }}", 'language': 'fr'}) }}#}
-                {#{{ knp_disqus_render('dolor-sid', {'identifier': "{{ page.title }}", 'limit': 10}) }}#}
+
             </div>
 
             <div class="row col-md-8 col-md-offset-2">
@@ -33,7 +31,7 @@
                     <div class="card-block">
                         {{ form_start(form, {'attr': {'novalidate': 'novalidate', "class": "form-group"}}) }}
                         {{ form_widget(form) }}
-                        <br>
+                        <br>≤
                         <button type="submit" value="Poster" class="btn">Poster</button>
                         {{ form_end(form) }}
                     </div>
