@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+    <div class="row col-md-8 col-md-offset-2">
+
+        <h1>Signaler un commentaire</h1>
+        <p>Etes-vous sûr de signaler le message suivant:</p>
+
+        <blockquote>{{ comment.content }}</blockquote>
+
+        {{ form_start(flag_form) }}
+        {{ form_widget(flag_form) }}
+        {{ form_end(flag_form) }}
+
+    </div>
+</div>
+{% endblock %}

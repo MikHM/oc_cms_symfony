@@ -8,6 +8,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\RadioType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 
 
@@ -105,6 +108,37 @@ class CommentController extends Controller
             'comment' => $comment,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
+    /**
+     * Display a form to flag a comment
+     *
+     * @Route("/{id}/flag", name="cms_comment_flag")
+     * @Method({"GET", "POST"})
+     */
+    public function flagAction(Request $request, Comment $comment)
+    {
+        $flagForm = $this->createFormBuilder($comment)
+            ->add("flag", RadioType::class, array(
+                "label" => "Oui "
+            ))
+            ->add('save', SubmitType::class, array('label' => 'Signaler'))
+            ->getForm();
+
+        $flagForm->handleRequest($request);
+
+        if ($flagForm->isSubmitted() && $flagForm->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($comment);
+            $em->flush($comment);
+
+            return $this->redirectToRoute('cms_page_display', array('id' => $comment->getPage()->getId()));
+        }
+
+        return $this->render(":comment:flagComment.html.twig", array(
+            "comment" => $comment,
+            "flag_form" => $flagForm->createView()
         ));
     }
 

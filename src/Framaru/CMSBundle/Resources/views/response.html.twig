@@ -1,4 +1,7 @@
 {% macro showComment(message) %}
+
+    {% import _self as macro %}
+
     <li class="list-group-item">
         <p class="comment-info"><strong>{{ message.author }}</strong>, le <em>{{ message.createdAt | date }}</em>, a écrit:
 
@@ -6,7 +9,9 @@
                 <span class="glyphicon glyphicon-comment"></span>
             </a>
 
-            <span class="glyphicon glyphicon-flag"></span>
+            <a href="{{ path('cms_comment_flag', {"id": message.id}) }}">
+                <span class="glyphicon glyphicon-flag"></span>
+            </a>
         </p>
 
         <p>{{ message.content }}</p>
@@ -14,7 +19,7 @@
         {% if message.children | length > 0 %}
             <ul>
                 {% for reply in message.children %}
-                    {{ _self.showComment(reply) }}
+                    {{ macro.showComment(reply) }}
                 {% endfor %}
             </ul>
         {% endif %}
