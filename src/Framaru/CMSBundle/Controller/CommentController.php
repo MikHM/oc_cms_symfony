@@ -121,7 +121,7 @@ class CommentController extends Controller
     {
         $flagForm = $this->createFormBuilder($comment)
             ->add("flag", RadioType::class, array(
-                "label" => "Oui "
+                "label" => "Oui :"
             ))
             ->add('save', SubmitType::class, array('label' => 'Signaler'))
             ->getForm();
@@ -138,7 +138,8 @@ class CommentController extends Controller
 
         return $this->render(":comment:flagComment.html.twig", array(
             "comment" => $comment,
-            "flag_form" => $flagForm->createView()
+            "flag_form" => $flagForm->createView(),
+            'id' => $comment->getPage()->getId()
         ));
     }
 

@@ -4,7 +4,7 @@
  {% for page in pages %}
      <div class="page container col-md-offset-2 col-md-8">
          <h2>{{ page.title }}</h2>
-         {{ page.content | slice(0,500) | raw }}...<br><a href="{{ path("cms_page_display", { id: page.id }) }}"> continuer</a>
+         {{ page.content | striptags | slice(0,500) }}...<br><a href="{{ path("cms_page_display", { id: page.id }) }}"> continuer</a>
      </div>
  {% endfor %}
 {% endblock %}

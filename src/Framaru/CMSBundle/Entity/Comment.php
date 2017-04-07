@@ -14,6 +14,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Comment
 {
+    const MAX_DEPTH = 3;
+
     /**
      * @var Page
      *
@@ -74,6 +76,12 @@ class Comment
      */
     private $children;
 
+    /**
+     * @var integer
+     * @Assert\Range(max=Comment::MAX_DEPTH)
+     * @ORM\Column(type="integer", options={"default": 0})
+     */
+    private $depth = 0;
 
     public function __construct()
     {
@@ -222,9 +230,29 @@ class Comment
     public function setParent(\Framaru\CMSBundle\Entity\Comment $parent = null)
     {
         $this->parent = $parent;
-        $this->page = $parent->getPage();
+        if ($parent)
+        {
+            $this->depth = $parent->getDepth() + 1;
+            $this->page = $parent->getPage();
+        }
 
         return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getDepth()
+    {
+        return $this->depth;
+    }
+
+    /**
+     * @param int $depth
+     */
+    public function setDepth($depth)
+    {
+        $this->depth = $depth;
     }
 
     /**

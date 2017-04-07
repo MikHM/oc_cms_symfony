@@ -16,7 +16,7 @@
 
             <div class="row col-md-8 col-md-offset-2">
                 <ul class="list-group">
-                    {% for message in allComments %}
+                    {% for message in allComments if message.parent is null %}
                         {{ response.showComment(message) }}
                     {% endfor %}
                 </ul>
@@ -31,7 +31,7 @@
                     <div class="card-block">
                         {{ form_start(form, {'attr': {'novalidate': 'novalidate', "class": "form-group"}}) }}
                         {{ form_widget(form) }}
-                        <br>≤
+                        <br>
                         <button type="submit" value="Poster" class="btn">Poster</button>
                         {{ form_end(form) }}
                     </div>

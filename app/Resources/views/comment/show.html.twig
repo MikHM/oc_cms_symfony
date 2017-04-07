@@ -8,19 +8,19 @@
             <table>
                 <tbody>
                 <tr>
-                    <th>Id</th>
+                    <th># </th>
                     <td>{{ comment.id }}</td>
                 </tr>
                 <tr>
-                    <th>Author</th>
+                    <th>Auteur: </th>
                     <td>{{ comment.author }}</td>
                 </tr>
                 <tr>
-                    <th>Content</th>
+                    <th>Message: </th>
                     <td>{{ comment.content }}</td>
                 </tr>
                 <tr>
-                    <th>Createdat</th>
+                    <th>Posté le: </th>
                     <td>{% if comment.createdAt %}{{ comment.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
                 </tr>
                 </tbody>

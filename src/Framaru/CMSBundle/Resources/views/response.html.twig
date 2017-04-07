@@ -5,16 +5,18 @@
     <li class="list-group-item">
         <p class="comment-info"><strong>{{ message.author }}</strong>, le <em>{{ message.createdAt | date }}</em>, a écrit:
 
-            <a href="{{ path("cms_comment_respond", {"id": message.id}) }}">
-                <span class="glyphicon glyphicon-comment"></span>
-            </a>
+            {% if message.depth < constant("MAX_DEPTH", message) %}
+                <a href="{{ path("cms_comment_respond", {"id": message.id}) }}">
+                    <span class="glyphicon glyphicon-comment"></span>
+                </a>
+            {% endif %}
 
             <a href="{{ path('cms_comment_flag', {"id": message.id}) }}">
                 <span class="glyphicon glyphicon-flag"></span>
             </a>
         </p>
 
-        <p>{{ message.content }}</p>
+        <p>{{ message.content | nl2br}}</p>
 
         {% if message.children | length > 0 %}
             <ul>

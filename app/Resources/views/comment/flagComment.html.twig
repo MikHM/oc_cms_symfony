@@ -5,13 +5,17 @@
     <div class="row col-md-8 col-md-offset-2">
 
         <h1>Signaler un commentaire</h1>
-        <p>Etes-vous sûr de signaler le message suivant:</p>
+        <p>Etes-vous sûr de vouloir signaler le message suivant:</p>
 
         <blockquote>{{ comment.content }}</blockquote>
 
         {{ form_start(flag_form) }}
         {{ form_widget(flag_form) }}
         {{ form_end(flag_form) }}
+
+        <br>
+
+        <a href="{{ path('cms_page_display', {"id": id }) }}"><button>Ne pas signaler</button></a>
 
     </div>
 </div>
