@@ -1,18 +1,24 @@
 security:
     # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
+        chain_provider:
+            chain:
+                providers: [in_memory, user_db]
         in_memory:
             memory:
                 users:
-                    mik:
-                        password: mikpass
-                        roles: 'ROLE_USER'
                     admin:
                         password: kraken
                         roles: 'ROLE_ADMIN'
+        user_db:
+            entity: { class: Framaru\CMSBundle\Entity\User, property: username }
+
+    role_hierarchy:
+        ROLE_ADMIN: [ROLE_USER]
 
     encoders:
         Symfony\Component\Security\Core\User\User: plaintext
+        Framaru\CMSBundle\Entity\User: bcrypt
 
     firewalls:
         dev:
@@ -20,6 +26,9 @@ security:
             security: false
 
         main:
+            pattern: ^/
+#            http_basic: ~
+#            provider: user_db
             anonymous: ~
             form_login:
                 login_path: /login
@@ -30,7 +39,7 @@ security:
 
     access_control:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: /cms/page, roles: ROLE_ADMIN }
-        - { path: /cms/category, roles: ROLE_ADMIN }
-        - { path: /cms/page, roles: ROLE_ADMIN }
+        - { path: /cms/user, roles: ROLE_ADMIN }
+        - { path: /cms/page, roles: ROLE_USER }
+        - { path: /cms/category, roles: ROLE_USER }
         - { path: /.*, roles: IS_AUTHENTICATED_ANONYMOUSLY }

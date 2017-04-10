@@ -1,36 +1,41 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>User</h1>
+    <div class="container">
+        <div class="row col-md-8 col-md-offset-2">
+            <h1>Utilisateur</h1>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ user.id }}</td>
-            </tr>
-            <tr>
-                <th>Username</th>
-                <td>{{ user.username }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ user.password | slice(0, 20)}}</td>
-            </tr>
-        </tbody>
-    </table>
+            <div class="table-responsive">
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th>#</th>
+                        <td>{{ user.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Utilisateur</th>
+                        <td>{{ user.username }}</td>
+                    </tr>
+                    <tr>
+                        <th>Mot de passe</th>
+                        <td>{{ user.password | slice(0, 20)}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('cms_user_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('cms_user_edit', { 'id': user.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+            <p>
+                <a href="{{ path('cms_user_edit', { 'id': user.id }) }}"><button class="btn btn-default">Modifier</button></a>
+            </p>
+
+            <p>
+                {{ form_start(delete_form) }}
+                <button type="submit" value="Delete" class="btn btn-danger">Effacer</button>
+                {{ form_end(delete_form) }}
+            </p>
+
+            <br>
+            <a href="{{ path('cms_user_index') }}"><button>Retour à la liste des utilisateurs</button></a>
+        </div>
+    </div>
 {% endblock %}

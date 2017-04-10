@@ -1,41 +1,38 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Users list</h1>
+    <div class="container">
+        <div class="row col-md-offset-2 col-md-8">
+            <h1>Liste des utilisteurs</h1>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Utilisateur</th>
+                        <th>Mot de passe</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td><a href="{{ path('cms_user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
+                            <td>{{ user.username }}</td>
+                            <td>{{ user.password | slice(0, 20) }}</td>
+                            <td>
+                                <a href="{{ path('cms_user_show', { 'id': user.id }) }}">Détails</a> |
+                                <a href="{{ path('cms_user_edit', { 'id': user.id }) }}">Modifier</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Username</th>
-                <th>Password</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
-            <tr>
-                <td><a href="{{ path('cms_user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
-                <td>{{ user.username }}</td>
-                <td>{{ user.password | slice(0, 20) }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('cms_user_show', { 'id': user.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('cms_user_edit', { 'id': user.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('cms_user_new') }}">Create a new user</a>
-        </li>
-    </ul>
+            <br>
+            <a href="{{ path('cms_user_new') }}"><button>Créer un utilisateur</button></a>
+            <br>
+        </div>
+    </div>
 {% endblock %}
