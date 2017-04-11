@@ -53,4 +53,12 @@ class CMSController extends Controller
             "page" => $page
         ));
     }
+
+    /**
+     * @Route("/apropos", name="cms_apropos")
+     */
+    public function aproposAction()
+    {
+        return $this->render('@CMS/CMS/apropos.html.twig');
+    }
 }

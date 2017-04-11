@@ -9,12 +9,9 @@ h1, h2 {
     color: #78FFCD;
 }
 
-/*.page {
-    border-top: 30px;
-    border-bottom: 30px;
-    width: 60%;
+#typewriter {
     margin: 0 auto;
-}*/
+}
 
 input, select {
     color: #000;
@@ -75,4 +72,18 @@ button {
 
 .response {
     margin-left: 1em;
+}
+
+/* #################################
+            A Propos
+################################# */
+#portrait {
+    margin-right: 0.6em;
+}
+
+/* #################################
+            Footer
+################################# */
+footer {
+    margin-top: 0.5em;
 }

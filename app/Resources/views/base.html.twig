@@ -17,28 +17,30 @@
         <div class="container">
             {% block nav %}
                 <div id="header">
-                    <div class="row col-md-offset-2 col-md-8 text-center">
+                    <div class="text-center col-xs-12 col-xs-2 col-xs-offset-5">
+                        <img src="{{ asset('img/typewriter.jpeg') }}" alt="machine à écrire" class="img-circle img-responsive" id="typewriter">
+                    </div>
+                    <div class="row col-md-offset-2 col-md-8 col-xs-12 text-center">
                         <h1 id="logo">Jean FORTEROCHE</h1>
+                        <p>Bienvenue sur le blog où je publie par épisode mon prochain livre:</p>
+                        <p><em>---- "Billet simple pour l'Alaska" ----</em></p>
                         <hr>
                     </div>
 
-                    <div class="row col-md-offset-2 col-md-8 ">
-                        <a href="{{ path("cms_homepage")}}"> <span class="fa fa-home" aria-hidden="true"></span> </a>
+                    <div class="row col-xs-12 col-md-offset-2 col-md-8 ">
+                        <a href="{{ path("cms_homepage")}}"> <span class="fa fa-home" aria-hidden="true"></span> </a> |
+                        <a href="{{ path('cms_apropos') }}">à propos</a>
 
                         {#TODO "Login" link should be removed for the final version of the site#}
                         <a href="{{ path("login") }}" class="identification">Login</a>
 
-                        {% if is_granted("ROLE_ADMIN") %}
-                            | <a href="{{ path("cms_page_new") }}"> Créer un billet </a> |
-                            <a href="{{ path("cms_category_index") }}"> Catégories </a> |
-                            <a href="{{ path("cms_comment_index") }}">Commentaires</a> |
-                            <a href="{{ path('cms_user_index') }}">Utilisateurs</a>
-                            <a href="{{ path("logout") }}" class="identification"> Logout </a>
-                        {% endif %}
-
                         {% if is_granted("ROLE_USER") %}
                             | <a href="{{ path("cms_page_new") }}"> Créer un billet </a> |
                             <a href="{{ path("cms_category_index") }}"> Catégories </a>
+                            {% if is_granted("ROLE_ADMIN") %}
+                                | <a href="{{ path("cms_comment_index") }}">Commentaires</a> |
+                                <a href="{{ path('cms_user_index') }}">Utilisateurs</a>
+                            {% endif %}
                             <a href="{{ path("logout") }}" class="identification"> Logout </a>
                         {% endif %}
                         <hr>
