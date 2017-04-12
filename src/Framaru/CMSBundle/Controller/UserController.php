@@ -26,7 +26,7 @@ class UserController extends Controller
 
         $users = $em->getRepository('CMSBundle:User')->findAll();
 
-        return $this->render('user/index.html.twig', array(
+        return $this->render('@CMS/user/index.html.twig', array(
             'users' => $users,
         ));
     }
@@ -51,7 +51,7 @@ class UserController extends Controller
             return $this->redirectToRoute('cms_user_show', array('id' => $user->getId()));
         }
 
-        return $this->render('user/new.html.twig', array(
+        return $this->render('@CMS/user/new.html.twig', array(
             'user' => $user,
             'form' => $form->createView(),
         ));
@@ -67,7 +67,7 @@ class UserController extends Controller
     {
         $deleteForm = $this->createDeleteForm($user);
 
-        return $this->render('user/show.html.twig', array(
+        return $this->render('@CMS/user/show.html.twig', array(
             'user' => $user,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -91,7 +91,7 @@ class UserController extends Controller
             return $this->redirectToRoute('cms_user_edit', array('id' => $user->getId()));
         }
 
-        return $this->render('user/edit.html.twig', array(
+        return $this->render('@CMS/user/edit.html.twig', array(
             'user' => $user,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
