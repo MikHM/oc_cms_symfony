@@ -33,7 +33,7 @@ class CommentController extends Controller
 
         $comments = $em->getRepository('CMSBundle:Comment')->findAll();
 
-        return $this->render('comment/index.html.twig', array(
+        return $this->render('@CMS/comment/index.html.twig', array(
             'comments' => $comments,
         ));
     }
@@ -64,7 +64,7 @@ class CommentController extends Controller
             return $this->redirectToRoute('cms_page_display', array('id' => $page_id));
         }
 
-        return $this->render('comment/new.html.twig', array(
+        return $this->render('@CMS/comment/new.html.twig', array(
             'comment' => $comment,
             'form' => $form->createView(),
         ));
@@ -80,7 +80,7 @@ class CommentController extends Controller
     {
         $deleteForm = $this->createDeleteForm($comment);
 
-        return $this->render('comment/show.html.twig', array(
+        return $this->render('@CMS/comment/show.html.twig', array(
             'comment' => $comment,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -104,7 +104,7 @@ class CommentController extends Controller
             return $this->redirectToRoute('cms_comment_edit', array('id' => $comment->getId()));
         }
 
-        return $this->render('comment/edit.html.twig', array(
+        return $this->render('@CMS/comment/edit.html.twig', array(
             'comment' => $comment,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -136,7 +136,7 @@ class CommentController extends Controller
             return $this->redirectToRoute('cms_page_display', array('id' => $comment->getPage()->getId()));
         }
 
-        return $this->render(":comment:flagComment.html.twig", array(
+        return $this->render("@CMS/comment/flagComment.html.twig", array(
             "comment" => $comment,
             "flag_form" => $flagForm->createView(),
             'id' => $comment->getPage()->getId()
@@ -204,7 +204,7 @@ class CommentController extends Controller
             return $this->redirectToRoute('cms_page_display', array('id' => $comment->getPage()->getId()));
         }
 
-        return $this->render('comment/respond.html.twig', array(
+        return $this->render('@CMS/comment/respond.html.twig', array(
             'comment' => $comment,
             "parent" => $parent,
             'form' => $form->createView(),
