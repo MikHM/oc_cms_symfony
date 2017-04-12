@@ -4,7 +4,13 @@
  {% for page in pages %}
      <div class="page container col-md-offset-2 col-md-8">
          <h2>{{ page.title }}</h2>
-         <p><small><em>Poster le {{ page.postedAt | date('d/m/Y') }}</em> </small></p>
+         <p>
+             <span><small><em>Posté le {{ page.postedAt | date('d/m/Y') }}</em></small></span>
+             &nbsp;&nbsp;
+             <span class="label label-default">{{ page.category.name }}</span></p>
+
+         <br>
+
          <p>
              {{ page.content | striptags | slice(0,500) }}...
          </p>
