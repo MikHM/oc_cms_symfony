@@ -78,8 +78,13 @@ button {
             A Propos
 ################################# */
 #portrait {
-    margin-right: 0.6em;
+    margin-right: 0.8em;
 }
+
+#apropos {
+    margin-bottom: 0.4em;
+}
+
 
 /* #################################
             Footer

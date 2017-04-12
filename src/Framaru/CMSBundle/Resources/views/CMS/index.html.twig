@@ -4,7 +4,13 @@
  {% for page in pages %}
      <div class="page container col-md-offset-2 col-md-8">
          <h2>{{ page.title }}</h2>
-         {{ page.content | striptags | slice(0,500) }}...<br><a href="{{ path("cms_page_display", { id: page.id }) }}"> continuer</a>
+         <p><small><em>Poster le {{ page.postedAt | date('d/m/Y') }}</em> </small></p>
+         <p>
+             {{ page.content | striptags | slice(0,500) }}...
+         </p>
+         <p>
+             <a href="{{ path("cms_page_display", { id: page.id }) }}"> continuer</a>
+         </p>
      </div>
  {% endfor %}
 {% endblock %}

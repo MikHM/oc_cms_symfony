@@ -5,11 +5,42 @@
         <div class="row col-lg-offset-2 col-lg-8">
             <h1>Modifier un billet</h1>
 
-            {{ form_start(edit_form) }}
+            {{ form_start(edit_form, {'attr': {'novalidate': 'novalidate', "class": "group"}}) }}
+            <div class="form-group">
+                {{ form_errors(edit_form.title) }}
+                {{ form_label(edit_form.title) }}
+                <br>
+                {{ form_widget(edit_form.title) }}
+            </div>
+            <div class="form-group">
+                {{ form_errors(edit_form.content) }}
+                {{ form_label(edit_form.content) }}
+                <br>
+                {{ form_widget(edit_form.content) }}
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    {{ form_errors(edit_form.category) }}
+                    {{ form_label(edit_form.category) }}
+                    <br>
+                    {{ form_widget(edit_form.category) }}
+                </div>
+                <div class="form-group col-md-4">
+                    {{ form_errors(edit_form.postedAt) }}
+                    {{ form_label(edit_form.postedAt) }}
+                    <br>
+                    {{ form_widget(edit_form.postedAt) }}
+                </div>
+            </div>
+            <br>
+            <button type="submit" value="Edit" class="btn btn-primary">Modifier</button>
+            {{ form_end(edit_form) }}
+
+            {#{{ form_start(edit_form) }}
             {{ form_widget(edit_form) }}
             <button type="submit" value="Edit" class="btn btn-default">Modifier</button>
             {{ form_end(edit_form) }}
-
+#}
 
             {{ form_start(delete_form) }}
             <br>

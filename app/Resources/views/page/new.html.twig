@@ -5,9 +5,35 @@
         <div class="row col-md-offset-2 col-md-8">
             <h1>Créer un nouveau billet</h1>
 
-            {{ form_start(form) }}
-            {{ form_widget(form) }}
-                <button type="submit" value="Create" class="btn btn-default">Créer le billet</button>
+            {{ form_start(form, {'attr': {'novalidate': 'novalidate', "class": "group"}}) }}
+            <div class="form-group">
+                {{ form_errors(form.title) }}
+                {{ form_label(form.title) }}
+                <br>
+                {{ form_widget(form.title) }}
+            </div>
+            <div class="form-group">
+                {{ form_errors(form.content) }}
+                {{ form_label(form.content) }}
+                <br>
+                {{ form_widget(form.content) }}
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    {{ form_errors(form.category) }}
+                    {{ form_label(form.category) }}
+                    <br>
+                    {{ form_widget(form.category) }}
+                </div>
+                <div class="form-group col-md-4">
+                    {{ form_errors(form.postedAt) }}
+                    {{ form_label(form.postedAt) }}
+                    <br>
+                    {{ form_widget(form.postedAt) }}
+                </div>
+            </div>
+            <br>
+            <button type="submit" value="Create" class="btn btn-primary">Créer le billet</button>
             {{ form_end(form) }}
 
             <br>

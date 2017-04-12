@@ -48,6 +48,10 @@ class Page
      */
     private $comments;
 
+    /**
+     * @ORM\Column(name="posted_at", type="date")
+     */
+    private $postedAt;
 
     /**
      * Get id
@@ -170,5 +174,29 @@ class Page
     public function getComments()
     {
         return $this->comments;
+    }
+
+    /**
+     * Set postedAt
+     *
+     * @param \DateTime $postedAt
+     *
+     * @return Page
+     */
+    public function setPostedAt($postedAt)
+    {
+        $this->postedAt = $postedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get postedAt
+     *
+     * @return \DateTime
+     */
+    public function getPostedAt()
+    {
+        return $this->postedAt;
     }
 }
