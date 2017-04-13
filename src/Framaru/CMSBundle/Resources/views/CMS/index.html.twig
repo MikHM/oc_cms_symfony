@@ -1,7 +1,7 @@
 {% extends "::base.html.twig" %}
 
 {% block body %}
- {% for page in pages %}
+ {% for page in pages | reverse %}
      <div class="page container col-md-offset-2 col-md-8">
          <h2>{{ page.title }}</h2>
          <p>

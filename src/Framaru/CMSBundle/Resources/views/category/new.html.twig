@@ -5,11 +5,13 @@
         <div class="row col-md-offset-2 col-md-8">
             <h1>Création d'une nouvelle catégorie</h1>
 
-            {{ form_start(form) }}
-            {{ form_widget(form) }}
-            <br>
-            <button type="submit" value="Create" class="btn btn-default">Créer la nouvelle catégorie</button>
-            {{ form_end(form) }}
+            <div class="form-group">
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                <br>
+                <button type="submit" value="Create" class="btn btn-default">Créer la nouvelle catégorie</button>
+                {{ form_end(form) }}
+            </div>
 
             <br>
 
